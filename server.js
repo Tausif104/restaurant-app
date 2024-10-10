@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 // routes
 app.use('/api/table', tableRoutes)
 app.use('/api/category', categoryRoute)
-app.use('/api/item', itemRoute)
+app.use('/api/items', itemRoute)
 
 const PORT = process.env.PORT || 5000
 

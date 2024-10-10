@@ -32,4 +32,24 @@ router.get('/', async (req, res) => {
   }
 })
 
+// GET all items by Category
+router.get('/category/:catId', async (req, res) => {
+  try {
+    const items = await Item.find({ category: req.params.catId })
+    res.status(200).json(items)
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+
+// GET single Item
+router.get('/:id', async (req, res) => {
+  try {
+    const item = await Item.findById(req.params.id)
+    res.status(200).json(item)
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+
 module.exports = router
