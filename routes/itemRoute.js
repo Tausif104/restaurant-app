@@ -1,10 +1,11 @@
 const express = require('express')
 const Item = require('../models/Item')
+const { auth, admin } = require('../middleware/auth')
 
 const router = express.Router()
 
 // Create Item
-router.post('/', async (req, res) => {
+router.post('/', auth, admin, async (req, res) => {
   try {
     const newItem = new Item({
       image: req.body.image,
@@ -33,7 +34,7 @@ router.get('/', async (req, res) => {
 })
 
 // GET all items by Category
-router.get('/category/:catId', async (req, res) => {
+router.get('/category/:catId', auth, admin, async (req, res) => {
   try {
     const items = await Item.find({ category: req.params.catId })
     res.status(200).json(items)

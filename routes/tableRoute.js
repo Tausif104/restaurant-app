@@ -1,10 +1,11 @@
 const express = require('express')
 const Table = require('../models/Table')
+const { auth, admin } = require('../middleware/auth')
 
 const router = express.Router()
 
 // Reserve Table - POST
-const postTableRoute = router.post('/', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const newTable = new Table({
       date: req.body.date,
@@ -26,7 +27,7 @@ const postTableRoute = router.post('/', async (req, res) => {
 })
 
 // Reserve Table - GET
-const getTableRoute = router.get('/', async (req, res) => {
+router.get('/', auth, admin, async (req, res) => {
   try {
     const tableData = await Table.find({})
     res.status(200).json(tableData)

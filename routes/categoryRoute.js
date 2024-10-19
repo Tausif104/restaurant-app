@@ -1,13 +1,15 @@
 const express = require('express')
 const Category = require('../models/Category')
+const { auth, admin } = require('../middleware/auth')
 
 const router = express.Router()
 
 // POST a category
-router.post('/', async (req, res) => {
+router.post('/', auth, admin, async (req, res) => {
   try {
     const newCategory = new Category({
       name: req.body.name,
+      createdBy: req.user._id,
     })
 
     const savedCategory = await newCategory.save()
