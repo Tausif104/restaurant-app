@@ -14,6 +14,7 @@ router.post('/', auth, admin, async (req, res) => {
       details: req.body.details,
       price: req.body.price,
       category: req.body.catId,
+      createdBy: req.user._id,
     })
 
     const savedItem = await newItem.save()
