@@ -7,6 +7,7 @@ const tableRoutes = require('./routes/tableRoute')
 const categoryRoute = require('./routes/categoryRoute')
 const itemRoute = require('./routes/itemRoute')
 const userRoute = require('./routes/userRoute')
+const fileUpload = require('./routes/fileUpload')
 
 dotenv.config()
 
@@ -26,6 +27,7 @@ app.use('/api/table', tableRoutes)
 app.use('/api/category', categoryRoute)
 app.use('/api/items', itemRoute)
 app.use('/api/users', userRoute)
+app.use('/api/upload', fileUpload)
 
 const PORT = process.env.PORT || 5000
 
